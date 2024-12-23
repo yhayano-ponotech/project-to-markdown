@@ -58,3 +58,5 @@ coverage/
 *.log
 *.tmp
 *.temp
+
+CombinedProjectFiles/*
