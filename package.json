@@ -2,7 +2,7 @@
     "name": "project-to-markdown",
     "displayName": "Project To Markdown",
     "description": "A VSCode extension to export project files to markdown",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "icon": "images/icon.png",
     "publisher": "Ponotech",
     "author": {
@@ -26,32 +26,54 @@
     ],
     "main": "./out/extension.js",
     "contributes": {
-        "commands": [{
-            "command": "project-to-markdown.export",
-            "title": "Export Project to Markdown"
-        }],
+        "commands": [
+            {
+                "command": "project-to-markdown.export",
+                "title": "Export Project to Markdown"
+            }
+        ],
         "configuration": {
             "title": "Project To Markdown",
             "properties": {
-                "projectToMarkdown.includePattern": {
+                "projectToMarkdown.extensions": {
                     "type": "string",
-                    "default": "**/*.{md,ts,js,py}",
-                    "description": "Files to include in the export"
+                    "default": "md,ts,js,py,java,cs,html,css",
+                    "description": "Comma-separated list of file extensions to include (without dots)"
                 },
-                "projectToMarkdown.excludePattern": {
+                "projectToMarkdown.excludeFolders": {
                     "type": "string",
-                    "default": "**/node_modules/**",
-                    "description": "Files to exclude from the export"
+                    "default": "node_modules,dist,build,.git",
+                    "description": "Comma-separated list of folder names to exclude"
                 },
                 "projectToMarkdown.outputFileName": {
                     "type": "string",
                     "default": "CombinedProjectFiles.md",
-                    "description": "Name of the output markdown file"
+                    "description": "Output file name"
+                },
+                "projectToMarkdown.outputDirectory": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Output directory relative to workspace root"
                 },
                 "projectToMarkdown.maxFileSize": {
                     "type": "number",
                     "default": 1048576,
                     "description": "Maximum file size in bytes (default: 1MB)"
+                },
+                "projectToMarkdown.includeFileMetadata": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include file metadata in output"
+                },
+                "projectToMarkdown.includeTableOfContents": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include table of contents"
+                },
+                "projectToMarkdown.includeSyntaxHighlighting": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Include syntax highlighting"
                 }
             }
         }
@@ -73,5 +95,8 @@
     "bugs": {
         "url": "https://github.com/yhayano-ponotech/error-reporter/issues"
     },
-    "homepage": "https://github.com/yhayano-ponotech/error-reporter"
+    "homepage": "https://github.com/yhayano-ponotech/error-reporter",
+    "dependencies": {
+        "glob": "^11.0.0"
+    }
 }

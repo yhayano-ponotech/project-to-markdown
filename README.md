@@ -5,7 +5,7 @@ A Visual Studio Code extension that exports your project files to a single markd
 ## Features
 
 - Export multiple project files to a single markdown document
-- Customizable file inclusion/exclusion patterns
+- Simple configuration with comma-separated lists
 - Syntax highlighting support
 - File metadata inclusion
 - Table of contents generation
@@ -33,33 +33,47 @@ Or install through the VS Code Marketplace by searching for "Project To Markdown
 
 You can customize the extension's behavior through VS Code settings:
 
-- `projectToMarkdown.includePattern`: Files to include in the export (default: `**/*.{md,ts,js,py,java,cs,html,css}`)
-- `projectToMarkdown.excludePattern`: Files to exclude from the export (default: `**/node_modules/**`)
-- `projectToMarkdown.outputFileName`: Name of the output markdown file (default: `CombinedProjectFiles.md`)
+- `projectToMarkdown.extensions`: Comma-separated list of file extensions to include (without dots)
+  - Example: `"md,ts,js,py,html,css"`
+  - Default: `"md,ts,js,py,java,cs,html,css"`
+
+- `projectToMarkdown.excludeFolders`: Comma-separated list of folder names to exclude
+  - Example: `"node_modules,dist,build,.git"`
+  - Default: `"node_modules,dist,build,.git"`
+
+- `projectToMarkdown.outputFileName`: Name of the output markdown file
+  - Default: `"CombinedProjectFiles.md"`
+
 - `projectToMarkdown.outputDirectory`: Output directory relative to workspace root
-- `projectToMarkdown.maxFileSize`: Maximum file size in bytes (default: 1MB)
-- `projectToMarkdown.includeFileMetadata`: Include file metadata in output (default: true)
-- `projectToMarkdown.includeTableOfContents`: Include table of contents (default: true)
-- `projectToMarkdown.includeSyntaxHighlighting`: Include syntax highlighting (default: true)
+  - Example: `"docs"`
+  - Default: `""` (workspace root)
+
+- `projectToMarkdown.maxFileSize`: Maximum file size in bytes
+  - Default: `1048576` (1MB)
+
+- `projectToMarkdown.includeFileMetadata`: Include file metadata in output
+  - Default: `true`
+
+- `projectToMarkdown.includeTableOfContents`: Include table of contents
+  - Default: `true`
+
+- `projectToMarkdown.includeSyntaxHighlighting`: Include syntax highlighting
+  - Default: `true`
 
 ## Extension Settings Example
 
 ```json
 {
-    "projectToMarkdown.includePattern": "**/*.{js,ts,md}",
-    "projectToMarkdown.excludePattern": "**/node_modules/**",
+    "projectToMarkdown.extensions": "md,ts,js,css,html",
+    "projectToMarkdown.excludeFolders": "node_modules,dist,build,.git",
     "projectToMarkdown.outputFileName": "ProjectDoc.md",
-    "projectToMarkdown.outputDirectory": "docs",
-    "projectToMarkdown.maxFileSize": 2097152,
-    "projectToMarkdown.includeFileMetadata": true,
-    "projectToMarkdown.includeTableOfContents": true,
-    "projectToMarkdown.includeSyntaxHighlighting": true
+    "projectToMarkdown.outputDirectory": "docs"
 }
 ```
 
 ## Supported File Types
 
-The extension supports all text-based files, including but not limited to:
+The extension supports all text-based files. Just add the file extension to the `extensions` setting. For example:
 
 - Markdown (.md)
 - TypeScript (.ts)
@@ -69,7 +83,7 @@ The extension supports all text-based files, including but not limited to:
 - C# (.cs)
 - HTML (.html)
 - CSS (.css)
-- And many more...
+- And any other text-based files...
 
 ## Known Issues
 
@@ -79,11 +93,15 @@ The extension supports all text-based files, including but not limited to:
 
 ## Release Notes
 
-### 0.1.0
+### 0.0.3
 
 - Initial release
+- Simple configuration with comma-separated lists
 - Basic file export functionality
 - Configurable settings
 - Progress indication
 - Syntax highlighting support
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
